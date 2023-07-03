@@ -18,3 +18,11 @@ License: GPLv2 or later
 Text Domain: tutsplus 
 
 */
+
+add_action('admin_enqueue_scripts', 'ds_admin_theme_style');
+add_action('login_enqueue_scripts', 'ds_admin_theme_style');
+function ds_admin_theme_style() {
+	if (!current_user_can( 'manage_options' )) {
+		echo '<style>.update-nag, .updated, .error, .is-dismissible { display: none; }</style>';
+	}
+}
